@@ -4,7 +4,6 @@ let triangles = []; // the triangles that make up the background
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  noLoop();
 
   preDrawBkgPoints();
   preDrawBkgTri();
@@ -16,7 +15,7 @@ function setup() {
 function draw() {
   background(30);
   drawBackground();
-  drawBird();
+  drawBirdTri();
 }
 
 // resize according to canvas size
@@ -24,8 +23,6 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   preDrawBkgPoints();
   preDrawBkgTri();
-  drawBirdTri();
-  redraw();
 }
 
 // put points in the point list
@@ -71,61 +68,79 @@ function drawBackground() {
 
 // draw the bird triangles
 function drawBirdTri() {
+  let offsetX = mouseX;
+  let offsetY = mouseY;
+
+  let doveCenterX = 0.5 * width;
+  let doveCenterY = 0.5 * height;
+
   // The vectors are manually input to make it looks like a dove
   birdTriangles = [
     // dove body
     [
-      createVector(0.57 * width, 0.3 * height),
-      createVector(0.42 * width, 0.6 * height),
-      createVector(0.57 * width, 0.6 * height)
+      createVector(0.57 * width - doveCenterX, 0.3 * height  - doveCenterY),
+      createVector(0.42 * width - doveCenterX, 0.6 * height - doveCenterY),
+      createVector(0.57 * width - doveCenterX, 0.6 * height - doveCenterY)
     ],
     [
-      createVector(0.42 * width, 0.6 * height),
-      createVector(0.27 * width, 0.75 * height),
-      createVector(0.57 * width, 0.6 * height)
+      createVector(0.42 * width - doveCenterX, 0.6 * height - doveCenterY),
+      createVector(0.27 * width - doveCenterX, 0.75 * height - doveCenterY),
+      createVector(0.57 * width - doveCenterX, 0.6 * height - doveCenterY)
     ],
     [
-      createVector(0.57 * width, 0.6 * height),
-      createVector(0.72 * width, 0.75 * height),
-      createVector(0.62 * width, 0.45 * height)
+      createVector(0.57 * width - doveCenterX, 0.6 * height - doveCenterY),
+      createVector(0.72 * width - doveCenterX, 0.75 * height - doveCenterY),
+      createVector(0.62 * width - doveCenterX, 0.45 * height - doveCenterY)
     ],
     // the wings
     [
-      createVector(0.57 * width, 0.3 * height),
-      createVector(0.27 * width, 0.15 * height),
-      createVector(0.42 * width, 0.6 * height)
+      createVector(0.57 * width - doveCenterX, 0.3 * height - doveCenterY),
+      createVector(0.27 * width - doveCenterX, 0.15 * height - doveCenterY),
+      createVector(0.42 * width - doveCenterX, 0.6 * height - doveCenterY)
     ],
     [
-      createVector(0.57 * width, 0.3 * height),
-      createVector(0.72 * width, 0.15 * height),
-      createVector(0.57 * width, 0.6 * height)
+      createVector(0.57 * width - doveCenterX, 0.3 * height - doveCenterY),
+      createVector(0.72 * width - doveCenterX, 0.15 * height - doveCenterY),
+      createVector(0.57 * width - doveCenterX, 0.6 * height - doveCenterY)
     ],
     // head
     [
-      createVector(0.67 * width, 0.3 * height),
-      createVector(0.57 * width, 0.3 * height),
-      createVector(0.57 * width, 0.6 * height)
+      createVector(0.67 * width - doveCenterX, 0.3 * height - doveCenterY),
+      createVector(0.57 * width - doveCenterX, 0.3 * height - doveCenterY),
+      createVector(0.57 * width - doveCenterX, 0.6 * height - doveCenterY)
     ],
     // tail
     [
-      createVector(0.42 * width, 0.6 * height),
-      createVector(0.27 * width, 0.65 * height),
-      createVector(0.22 * width, 0.6 * height)
+      createVector(0.42 * width - doveCenterX, 0.6 * height - doveCenterY),
+      createVector(0.27 * width - doveCenterX, 0.65 * height - doveCenterY),
+      createVector(0.22 * width - doveCenterX, 0.6 * height - doveCenterY)
     ],
     [
-      createVector(0.42 * width, 0.6 * height),
-      createVector(0.24 * width, 0.66 * height),
-      createVector(0.3 * width, 0.72 * height)
+      createVector(0.42 * width - doveCenterX, 0.6 * height - doveCenterY),
+      createVector(0.24 * width - doveCenterX, 0.66 * height - doveCenterY),
+      createVector(0.3 * width - doveCenterX, 0.72 * height - doveCenterY)
     ]
   ];
-}
 
-// draw the bird
-function drawBird() {
   noStroke();
   for (let tris of birdTriangles) {
     let colorBkg = random(180, 255);
     fill(colorBkg);
-    triangle(tris[0].x, tris[0].y, tris[1].x, tris[1].y, tris[2].x, tris[2].y);
+    triangle(
+      tris[0].x + offsetX, tris[0].y + offsetY,
+      tris[1].x + offsetX, tris[1].y + offsetY,
+      tris[2].x + offsetX, tris[2].y + offsetY
+    );
   }
+
 }
+
+// draw the bird
+// function drawBird() {
+//   noStroke();
+//   for (let tris of birdTriangles) {
+//     let colorBkg = random(180, 255);
+//     fill(colorBkg);
+//     triangle(tris[0].x, tris[0].y, tris[1].x, tris[1].y, tris[2].x, tris[2].y);
+//   }
+// }
