@@ -11,9 +11,10 @@
 
 ###### 2. Which properties of the image will be animated and how?
     The dove class will be animated. Here are methods used:
-    1.First,to make the dove move with the cursor, I set up a mouseX and mouseY, and make some changes to drawBirdTri(), so it would not draw the dove always in the center of the screen.
-    2.Second,to make the explosion effect while clicking, add a new list that stores data about particles and make each of them smaller and more transparent with time. When they become totally transparent, remove them from the list.
-    3.
+    1.Create a crosshair that move with the cursor.
+    2.Create class dove and draw doves that are flying from the left side of the screen to the right side.
+    3.Make a explosion effect while clicking, add a new list that stores data about particles and make each of them smaller and more transparent with time. When they become totally transparent, remove them from the list.
+    4.After the explosion, leave a anti-war icon on the back ground.
 
 ###### 3. Group decision:
     There's no other group member in my group, so I choose user input because I believe this method would display my inspiration in the best way.
