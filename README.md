@@ -11,8 +11,8 @@
 
 ###### 2. Which properties of the image will be animated and how?
     The dove class will be animated. Here are methods used:
-    1.
-    2.
+    1.First,to make the dove move with the cursor, I set up a mouseX and mouseY, and make some changes to drawBirdTri(), so it would not draw the dove always in the center of the screen.
+    2.Second,to make the explosion effect while clicking, add a new list that stores data about particles and make each of them smaller and more transparent with time. When they become totally transparent, remove them from the list.
     3.
 
 ###### 3. Group decision:
@@ -28,8 +28,15 @@
     How did they influence your submission?
 
 ###### 5. A short technical explanation of how your individual code works to animate the image and any appropriate references.
-    Overally speaking, my individual work is about three parts. 
-    First,to make the dove move with the cursor, I set up a mouseX and mouseY, and make some changes to drawBirdTri(), so it would not draw the dove always in the center of the screen.
+    Overally speaking, my individual work is about three parts. The steps are already stated. I would list methods used which were not taught in class here and explain them in short language:
+    
+    beginShape() and endShape();
+    vertex(x,y);
+    .splice(i, j);
+    
+    
+
+
 
 
 
