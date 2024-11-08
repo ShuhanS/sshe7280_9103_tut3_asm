@@ -50,6 +50,13 @@ function draw() {
     }
   }
 
+  //draw the cursor
+  if (clickCount < 4){
+    drawCrosshair(mouseX, mouseY);
+  }else{
+    drawCrosshair(width/2, height /2.4);//a little higher than middle
+  }
+
   //update existing doves
   for (let i = doves.length - 1; i >= 0; i--) {
     let dove = doves[i];
@@ -60,8 +67,8 @@ function draw() {
     }
   }
 
-  //draw the cursor
-  drawCrosshair(mouseX, mouseY);
+  
+  
 
   // generate new doves
   if (random(1) < 0.05) {
@@ -77,10 +84,10 @@ function draw() {
 function drawCrosshair(x, y) {
   if (clickCount >= 4) {
     // Draw peace symbol as cursor
-    let size = 70;
+    let size = height/2;
     let radius = size / 2;
     stroke(0);
-    strokeWeight(5);
+    strokeWeight(height/25);
     noFill();
     ellipse(x, y, size, size);
 
@@ -252,7 +259,7 @@ class Dove {
     } else {
       noStroke();
       for (let tris of this.triangles) {
-        let colorBkg = random(180, 255);
+        let colorBkg = random(230, 235);
         fill(colorBkg);
         triangle(
           tris[0].x + this.position.x, tris[0].y + this.position.y,

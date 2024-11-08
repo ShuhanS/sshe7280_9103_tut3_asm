@@ -3,7 +3,7 @@
 #### I. Instructions on how to interact with the work
 1. At the beginning, the cursor is a crosshair, which you can use to shoot the dove.
 2. Click on the flying doves to shoot. If you hit it, you will see the hit effect of an explosion of the dove feathers and the blood stain on the wall.
-3. After you have "killed" three doves, an anti-war effect will be triggered. A large bloodstain will appear in the background, and the cursor will change to a peace icon from the crosshair. And you are not allowed to shoot doves any more.
+3. After you have "killed" three doves, an anti-war effect will be triggered. A large bloodstain and a peace icon will appear in the background. And you are not allowed to shoot doves any more.
 
 #### II. Details of your individual approach to animating the group code.
 ##### 1. my chosen method: interaction
@@ -32,15 +32,15 @@ I also drew inspiration from the **crosshair** in this shot, as I believe it imp
 ##### 5. Short technical explanation
 Overally speaking, my code creates an interactive animation where doves fly across the screen, and when clicked, they explode into particles. Here are my steps.
 
-0. Create a crosshair/peace icon that moves with the cursor.
+1. Create a crosshair that moves with the cursor.
     noCursor();
     then made a small icon(mouseX, mouse Y)
 
-1. Main loop:
+2. Main loop:
 - setup() and draw():
     - rendering of the background, blood stains, doves, particles, and cursor each frame
 
-2. Create class dove and draw doves that are flying from the left side of the screen to the right side.
+3. Create class dove and draw doves that are flying from the left side of the screen to the right side.
 - Class dove:
     - Constructor: initializes the dove's position, velocity, size, and generates its shape.
     - Shape Generation: uses scaled vectors to define the dove's shape through a series of triangles.
@@ -49,7 +49,7 @@ Overally speaking, my code creates an interactive animation where doves fly acro
     - Explosion Logic: Create particles from dove's triangles.
     - Collision Detection: Checks if the cursor is within the dove's area.
 
-3. Make a explosion effect and a blood stain effect while clicking, add a new list that stores data about particles and make each of them smaller and more transparent with time. When they become totally transparent, remove them from the list.
+4. Make a explosion effect and a blood stain + peace icon effect while clicking, add a new list that stores data about particles and make each of them smaller and more transparent with time. When they become totally transparent, remove them from the list.
 - Class particles:
     - Constructor: Initializes particle properties, including a random direction and speed.
     - Updating Particle State: Moves the particle, reduces its size, and decreases its transparency over time.
