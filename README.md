@@ -20,6 +20,7 @@
     There's no other group member in my group, so I choose user input because I believe this method would display my inspiration in the best way.
 ###### 4. References to inspiration for animating your individual code
     images1 (still or gifs). 
+    ![alt text](libraries/assets/anti-war1.jpg)
     How did they influence your submission?
 
     images1 (still or gifs). 
