@@ -4,13 +4,15 @@ let triangles = []; // the triangles that make up the background
 let backgroundLayer;// to store the bkg so we don't have do draw it each frame(and slow down this whole thing)
 let doves = [];//store all the doves
 let crosshair;//crosshair shape that used as cursor
-let clickCount = 0;
+let clickCount = 0;//count the click times
 let bloodImage;
 
+//preload the blood stain
 function preload() {
   bloodImage = loadImage('libraries/assets/blood.png');
 }
 
+//Draw background and first few doves
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //hide the original cursor
@@ -38,6 +40,7 @@ function setup() {
   }
 }
 
+//update the dove movement and draw new doves
 function draw() {
   image(backgroundLayer, 0, 0);
 
@@ -74,10 +77,10 @@ function draw() {
 function drawCrosshair(x, y) {
   if (clickCount >= 4) {
     // Draw peace symbol as cursor
-    let size = 250;
+    let size = 70;
     let radius = size / 2;
     stroke(0);
-    strokeWeight(20);
+    strokeWeight(5);
     noFill();
     ellipse(x, y, size, size);
 
@@ -173,6 +176,7 @@ class Dove {
     this.generateTriangles();
   }
 
+  //the basic shape of the doves
   generateTriangles() {
     let s = this.size;
     this.triangles = [
@@ -223,6 +227,7 @@ class Dove {
     ];
   }
 
+  //check if the dove is clicked on and calculate movement
   update() {
     if (!this.isExploded) {
       this.position.add(this.velocity);
@@ -238,6 +243,7 @@ class Dove {
     }
   }
 
+  //check if the dove is clicked and then draw correspondingly
   draw() {
     if (this.isExploded) {
       for (let p of this.particles) {
@@ -257,6 +263,7 @@ class Dove {
     }
   }
 
+  //draw blood and divide the dove into triangles(particles)
   explode() {
     this.isExploded = true;
     this.bloodPositions.push(this.position.copy());
@@ -271,6 +278,7 @@ class Dove {
     }
   }
 
+  //check if the dove has flown outside the screen
   isOffScreen() {
     return this.position.x - this.size > width;
   }
@@ -283,6 +291,7 @@ class Dove {
 
 }
 
+//class of particles, deal with the explosion effect
 class Particle {
   constructor(vertices, color) {
     this.vertices = vertices;
@@ -335,6 +344,7 @@ function mousePressed() {
   }
 }
 
+//draw the effect of blood
 function drawPeaceSign() {
   let size = max(width, height) * 1.5; // Increase size to ensure coverage
 
@@ -354,15 +364,4 @@ function drawPeaceSign() {
   }
 
   backgroundLayer.imageMode(CORNER); // Reset image mode to default
-}
-
-function drawBloodLine(pg, x1, y1, x2, y2) {
-  let distance = dist(x1, y1, x2, y2);
-  let steps = distance / (bloodImage.width / 4); // adjust step size
-  for (let i = 0; i <= steps; i++) {
-    let t = i / steps;
-    let x = lerp(x1, x2, t);
-    let y = lerp(y1, y2, t);
-    pg.image(bloodImage, x - bloodImage.width / 2, y - bloodImage.height / 2);
-  }
 }
